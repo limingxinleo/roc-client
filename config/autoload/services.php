@@ -18,7 +18,7 @@ return [
             'protocol' => Hyperf\RpcMultiplex\Constant::PROTOCOL_DEFAULT,
             'load_balancer' => 'random',
             'nodes' => [
-                ['host' => '127.0.0.1', 'port' => 9501],
+                ['host' => env('ROC_HOST', '127.0.0.1'), 'port' => 9501],
             ],
             'options' => [
                 'connect_timeout' => 5.0,
