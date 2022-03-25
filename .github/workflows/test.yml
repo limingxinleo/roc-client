@@ -28,10 +28,13 @@ jobs:
           extensions: pdo, pdo_mysql, redis
       - name: Setup Swoole
         run: ./.github/swoole.install.sh
-      - name: Setup MySQL ...
+      - name: Setup ROC Server
         run: |
-          docker run -e TZ=Asia/Shanghai -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=hyperf -v $PWD/.github/init.sql:/docker-entrypoint-initdb.d/init.sql -d -p 3306:3306 --name mysql mysql/mysql-server:5.7
-          docker run -p 6379:6379 -d --name redis redis:latest
+          cd /tmp
+          git clone https://github.com/limingxinleo/roc-skeleton.git
+          cd roc-skeleton
+          docker build . -t roc
+          docker run -p 9501:9501 --rm --name roc_server -d roc:latest
       - name: Show Environment
         run: |
           php -v

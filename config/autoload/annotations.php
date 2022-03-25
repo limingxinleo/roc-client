@@ -13,6 +13,7 @@ return [
     'scan' => [
         'paths' => [
             BASE_PATH . '/app',
+            BASE_PATH . '/roc',
         ],
         'ignore_annotations' => [
             'mixin',
